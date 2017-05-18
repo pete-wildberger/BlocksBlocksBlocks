@@ -2,10 +2,13 @@ $(onReady);
 
 function onReady(){
   console.log('JS is loaded');
-
+//add a box
 $('#buttonOne').on('click', addBox);
+  //change box color
 $('#divOne').on('click', '#box', blackBox);
+  //remove box
 $('#divOne').on('click', '#buttonX', removeBox);
+  //change button color and font style
 $('#buttonOne').click(function(){
   randomNumber(1, 7);
   randomColor(mathNumber);
