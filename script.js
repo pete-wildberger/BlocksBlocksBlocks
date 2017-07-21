@@ -1,45 +1,35 @@
-$(onReady);
 
-function onReady(){
-  console.log('JS is loaded');
-
-$('#buttonOne').on('click', addBox);
-$('#divOne').on('click', '#box', blackBox);
-$('#divOne').on('click', '#buttonX', removeBox);
-$('#buttonOne').click(function(){
+var addBox = function() {
   randomNumber(1, 7);
   randomColor(mathNumber);
-  randomFont(mathNumber);
-  $('#buttonOne').css('background-color', color);
-  $('p').css('font-family', font);
-});
-
-}
-//add box
-function addBox(){
-  var $divBox = $('<div>' + '<button id="buttonX">X</button>' + '</div>');
+  targetDiv = document.getElementById('divOne');
+  divBox = document.createElement("DIV");
+  button = document.createElement("BUTTON");
+  X = document.createTextNode("X");
+  button.id = 'buttonX';
+  divBox.className = 'box';
+  divBox.style.backgroundColor = color;
+  divBox.addEventListener("click", function() {
+    this.style.backgroundColor = 'black';
+  }, false);
+  button.addEventListener("click", function() {
+    this.parentNode.parentNode.removeChild(this.parentNode);
+  }, false);
+  button.appendChild(X);
+  divBox.appendChild(button);
+  targetDiv.appendChild(divBox);
   console.log('new box');
-  $divBox.attr('id', 'box');
-  $('#divOne').append($divBox);
-  randomNumber(1, 7);
-  randomColor(mathNumber);
-  $divBox.css('background-color', color );
+};
 
-}
-//turn box black
-function blackBox(){
-  console.log('box clicked');
-  $(this).css('background-color', 'black');
-}
-//make random number
 var mathNumber;
-function randomNumber(min, max){
-    return mathNumber = Math.floor(Math.random() * (1 + max - min) + min);
-}
 
+function randomNumber(min, max) {
+  return mathNumber = Math.floor(Math.random() * (1 + max - min) + min);
+}
 //change color
 var color = '';
-function randomColor(number){
+
+function randomColor(number) {
   switch (number) {
     case 1:
       color = 'red';
@@ -65,7 +55,8 @@ function randomColor(number){
 }
 //change font
 var font = '';
-function randomFont(number){
+
+function randomFont(number) {
   console.log('font change');
   switch (number) {
     case 1:
@@ -91,7 +82,10 @@ function randomFont(number){
   }
   console.log(font);
 }
-//remove box
-function removeBox() {
-  $(this).parent().fadeOut('slow');
+
+function buttonOneClick() {
+  addBox();
+  randomFont(mathNumber);
+  document.getElementById('fonty').style.fontFamily = font;
 }
+//add box
