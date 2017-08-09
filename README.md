@@ -12,7 +12,8 @@ When each box is first generated, give it a randomly assigned color.
 You can use the following code for your random functionality.
 ```function randomNumber(min, max){
     return Math.floor(Math.random() * (1 + max - min) + min);
-}```
+}
+```
 
 Pro:
 Add an 'x' in each box that allows the user to completely remove a box.
